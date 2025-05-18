@@ -1,0 +1,129 @@
+/* .carousel-wrapper {
+  width: 100%;
+  overflow: visible;
+  position: relative;
+  padding: 0 10vw;
+  box-sizing: content-box;
+}
+*/
+.card {
+  width: 100%;
+  border-radius: 16px;
+  height: 250px;
+}
+
+.team-card {
+  height: 50vh;
+  width: 90%;
+  background: linear-gradient(144.2deg, #e1f3ff 0%, #2aa7ff 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  border: 5px solid white;
+  box-shadow: 0px 15px 55px -10px #00000017;
+  margin: 1% 0;
+}
+
+.team-card > img {
+  object-fit: contain;
+  height: 80%;
+}
+
+.carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.custom-bullet {
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #888;
+  box-sizing: border-box;
+  /* transition: all 0.3s ease; */
+}
+
+.inner-dot {
+  display: block;
+  width: 15px !important;
+  height: 15px !important;
+  margin: auto;
+  background: transparent;
+  position: absolute;
+}
+.swiper-pagination-bullet-active {
+  width: 25px !important;
+  height: 25px !important;
+  border-radius: 50%;
+  border: 3px solid #2aa8ff !important;
+  background-color: #fff !important;
+}
+
+.swiper-pagination-bullet-active > span {
+  background-color: #2aa8ff !important;
+  border-radius: 50%;
+}
+.swiper-slide {
+  height: 100%;
+}
+/* .custom-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.custom-bullet {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #888;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.inner-dot {
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: transparent;
+  position: absolute;
+}
+
+.swiper-pagination-bullet-active {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 3px solid #2aa8ff;
+  background-color: #fff;
+}
+
+.swiper-pagination-bullet-active > .inner-dot {
+  background-color: #2aa8ff;
+  border-radius: 50%;
+} */
+@media screen and (max-width: 768px) {
+  .team-card {
+    width: 80%;
+    margin:0 auto;
+  }
+}

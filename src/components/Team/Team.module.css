@@ -1,0 +1,14 @@
+.wrapper {
+  margin: 5% 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.carouselPeekWrapper {
+  padding: 0 10vw; /* creates the left/right peek area */
+  overflow: visible;
+  margin-left: -10vw; /* aligns back to left */
+  margin-right: -10vw; /* aligns back to right */
+}

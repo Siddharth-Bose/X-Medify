@@ -1,0 +1,29 @@
+.btn {
+  background-color: #2aa8ff;
+  padding: 10px;
+  min-width: max-content;
+  text-align: center;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+}
+.mobCta {
+  display: none;
+}
+.viewAll {
+  margin-top: 3%;
+  width: 10%;
+  padding: 1% 2%;
+}
+@media screen and (max-width: 768px) {
+  .mobCta {
+    display: flex;
+  }
+  .ctaBtn {
+    display: none;
+  }
+  .viewAll {
+    width: 40%;
+    padding:3%
+  }
+}
