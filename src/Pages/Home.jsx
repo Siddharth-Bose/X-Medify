@@ -6,13 +6,18 @@ import Specialization from "../components/Specialization";
 import { SwiperSlide } from "swiper/react";
 import OfferCard from "../components/Carousel/Cards/OfferCard";
 import Team from "../components/Team";
+import HeroImg from "../components/HeroImg";
+import Blogs from "../components/Blogs";
+import Acquisition from "../components/Acquisition";
+import FAQ from "../components/FAQ";
+import Downloads from "../components/Downloads";
 
 function Home() {
   return (
     <div>
       <Hero />
       <FacilitiesSearch />
-      <div style={{ width: "80%", margin: "5% auto", }}>
+      <div style={{ width: "80%", margin: "5% auto" }}>
         <Carousel>
           {Array.from({ length: 9 }).map((_, index) => (
             <SwiperSlide key={index}>
@@ -23,6 +28,11 @@ function Home() {
       </div>
       <Specialization />
       <Team />
+      <HeroImg />
+      <Blogs />
+      <Acquisition />
+      <FAQ />
+      <Downloads />
     </div>
   );
 }

@@ -1,0 +1,31 @@
+.card {
+  width: 100px;
+  height: 350px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+  padding: 10% 0;
+  border-radius: 10px;
+}
+.image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+h3 {
+  font-size: 1.5em;
+}
+p {
+  color: #77829d;
+  line-height: 240%;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    margin-top: 5% !important;
+    width: 100%;
+  }
+}

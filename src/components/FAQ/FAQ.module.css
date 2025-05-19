@@ -1,0 +1,97 @@
+.faqWrapper {
+  margin: 5%;
+}
+.faqs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10%;
+}
+.faqAbout {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.faqImg {
+  max-width: 350px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border: 5px solid white;
+  box-shadow: 0px 15px 55px -10px #00000017;
+  z-index: 1;
+}
+.faqQuestions {
+  flex: 1;
+}
+.question {
+  display: flex;
+  gap: 5%;
+  margin: 10% 0;
+}
+.questionText {
+  color: #1b3c74;
+  font-weight: 700;
+}
+.questionIcon {
+  color: #2aa7ff;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.smiley {
+  display: flex;
+  gap: 1%;
+  z-index: 2;
+  background-color: #fff;
+  width: 30%;
+  margin-right: -10%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0px 15px 35px -5px #00000012;
+  border-radius: 8px;
+  padding: 1%;
+}
+.smiley > img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.smileyAbout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 50%;
+  flex: 1;
+}
+.customer {
+  font-size: 12px;
+}
+.number {
+  font: 1.5rem;
+  color: #1b3c74;
+  font-weight: 700;
+}
+.heart {
+  height: 40px;
+  width: 40px;
+  padding: 5px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0px 15px 35px -5px #00000012;
+  background-color: #fff;
+  margin-top: -10%;
+  margin-left: -3%;
+  z-index: 2;
+}
+@media screen and (max-width: 768px) {
+  .faqAbout {
+    display: none;
+  }
+  .faqQuestions {
+    width: 100%;
+  }
+}

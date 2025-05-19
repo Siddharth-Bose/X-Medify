@@ -1,3 +1,7 @@
+.textCenter > *,
+.textJustify > * {
+  word-spacing: 5px;
+}
 .heading {
   color: #1b3c74;
   margin-bottom: 1%;
@@ -10,4 +14,7 @@
 }
 .textCenter {
   text-align: center;
+}
+.textJustify {
+  text-align: left;
 }

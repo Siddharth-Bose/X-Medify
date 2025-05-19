@@ -1,0 +1,51 @@
+.downloads {
+  display: flex;
+  gap: 10px;
+  background: linear-gradient(
+    81deg,
+    #e7f0ff 9.01%,
+    rgba(232, 241, 255, 0.47) 89.11%
+  );
+}
+.downloadsAbout {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.downloadsCta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 2%;
+  padding-top: 5%;
+}
+.inputGroup {
+  display: flex;
+}
+.inputGroup > * {
+  padding: 10px;
+}
+.prefix {
+  background-color: #fff;
+  border: 1px solid #f0f0f0 !important;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.input {
+  background-color: #fff;
+  border: 1px solid #f0f0f0 !important;
+  border: none;
+  width: 20rem;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.downloadBtnContainer {
+  display: flex;
+  gap: 5%;
+  margin-top: 10%;
+}
+.downloadBtn {
+  width: 30%;
+}

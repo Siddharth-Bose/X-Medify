@@ -1,0 +1,50 @@
+.blogWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #00000012;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 30%;
+  margin-top: 1%;
+}
+.blogDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 15%;
+  justify-content: space-around;
+  padding: 2%;
+}
+.blogImg {
+  width: 100%;
+}
+.blogHeader {
+  display: flex;
+  gap: 5%;
+  align-items: center;
+  margin-top: 1%;
+}
+.vr {
+  height: 25px;
+  background-color: #00000012;
+  width: 2px;
+}
+
+.authorContainer {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+}
+.authorIimg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+@media screen and (max-width: 786px) {
+  .blogWrapper {
+    /* flex: 1; */
+    width: 100%;
+  }
+}

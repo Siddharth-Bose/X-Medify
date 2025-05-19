@@ -1,4 +1,3 @@
-// useIsMobile.js
 import { useState, useEffect } from "react";
 
 function useIsMobile(breakpoint = 768) {
