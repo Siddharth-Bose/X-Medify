@@ -23,6 +23,8 @@
 }
 .inputGroup {
   display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }
 .inputGroup > * {
   padding: 10px;
@@ -37,7 +39,8 @@
   background-color: #fff;
   border: 1px solid #f0f0f0 !important;
   border: none;
-  width: 20rem;
+  width: 60%;
+  margin-right: 2%;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -48,4 +51,26 @@
 }
 .downloadBtn {
   width: 30%;
+}
+@media screen and (max-width: 768px) {
+  .downloads {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+  .downloadsAbout {
+    width: 100%;
+    justify-content: center;
+  }
+  .downloadsCta {
+    align-items: center;
+  }
+  .inputGroup {
+    justify-content: center;
+  }
+  .arrow {
+    display: none;
+  }
+  .downloadBtnContainer{
+    justify-content: center;
+  }
 }
