@@ -5,7 +5,7 @@ function Button({ children, handler, parentClasses, search = false }) {
   return (
     <div className={`${styles.btn} ${styles[parentClasses]}`}>
       {search && <img src="/Search.png" alt="search-logo" height={"20px"} />}
-      <button className={`${styles.btn}`} onClick={handler}>
+      <button className={`${styles.btn}`} onClick={handler} id="searchBtn">
         {children}
       </button>
     </div>

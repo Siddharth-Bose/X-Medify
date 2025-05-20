@@ -80,9 +80,9 @@ function SearchBox() {
                 className={`${styles.input}`}
               />
             </div>
+            <Button search>Search</Button>
           </>
         )}
-        <Button search>Search</Button>
       </div>
     </div>
   );
