@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./HospitalCard.module.css";
 import DateTabs from "./DateTabs";
 import Button from "../UI/Button/Button";
 
 function HospitalCard() {
+  const [isBooking, setIsBooking] = useState(false);
   return (
     <div className={styles.hospital}>
       <div className={styles.hospitalCard}>
@@ -24,17 +25,21 @@ function HospitalCard() {
             <img src="Like.png" alt="Like" width={25} height={20} />5
           </div>
         </div>
-        {/* <div className={styles.availability}>
-          <h4>Available Today</h4>
-          <Button>Book Free Center Visit</Button>
-        </div> */}
-        <div className={styles.booking}>
+        {!isBooking ? (
+          <div className={styles.availability}>
+            <h4>Available Today</h4>
+            <Button handler={() => setIsBooking((prev) => !prev)}>
+              Book Free Center Visit
+            </Button>
+          </div>
+        ) : (
+          <div className={styles.booking}>
             <div className={styles.bookingTime}>10:30 A.M.</div>
             <div className={styles.bookingDate}>20 April 2024</div>
-
-        </div>
+          </div>
+        )}
       </div>
-      <DateTabs />
+      {isBooking && <DateTabs />}
     </div>
   );
 }

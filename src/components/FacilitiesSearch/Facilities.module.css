@@ -1,6 +1,6 @@
 .modalContainer {
   width: 80%;
-  height: 50vh;
+  height: max-content;
   margin: 0 auto;
   margin-top: -20%;
   background-color: #fff;
@@ -9,10 +9,42 @@
   padding: 5%;
 }
 
+.search {
+  display: flex;
+  gap: 5%;
+  justify-content: space-evenly;
+}
+
+.cardWrapper {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0px, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin-top: 5%;
+}
+
+@media screen and (max-width: 400px) {
+  .cardWrapper {
+    grid-template-columns: repeat(1, minmax(0px, 1fr));
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .cardWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+    gap: 16px;
+    width: 100%;
+  }
   .modalContainer {
     margin-top: 0;
     margin: 5% auto;
     width: 90%;
+  }
+  .search {
+    flex-wrap: wrap;
+  }
+  .search > * {
+    margin-top: 5%;
   }
 }
