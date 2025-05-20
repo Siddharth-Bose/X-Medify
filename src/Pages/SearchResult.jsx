@@ -1,7 +1,8 @@
 import React from "react";
+import HospitalCard from "../components/HospitalCard";
 
 function SearchResult() {
-  return <div>Search Results</div>;
+  return <HospitalCard />;
 }
 
 export default SearchResult;

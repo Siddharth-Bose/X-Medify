@@ -8,17 +8,33 @@ import Navbar from "./components/Navbar";
 import Downloads from "./components/Downloads";
 import Footer from "./components/Footer";
 import FAQ from "./components/FAQ";
+import SearchBox from "./components/SearchBox";
+import Layout from "./Layout";
 
 function App() {
   const location = useLocation();
   return (
     <div className="App">
       <Navbar />
-      <SearchBox />
+      {location.pathname !== "/" && <SearchBox />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search-result" element={<SearchResult />} />
-        <Route path="/my-bookings" element={<Bookings />} />
+        <Route
+          path="/search-result"
+          element={
+            <Layout>
+              <SearchResult />
+            </Layout>
+          }
+        />
+        <Route
+          path="/my-bookings"
+          element={
+            <Layout>
+              <Bookings />
+            </Layout>
+          }
+        />
       </Routes>
       {location.pathname !== "/my-bookings" && <FAQ />}
       <Downloads />

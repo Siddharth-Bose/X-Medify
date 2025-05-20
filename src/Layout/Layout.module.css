@@ -1,0 +1,35 @@
+.layoutWrapper {
+  display: flex;
+  max-width: 100%;
+  padding: 3%;
+  background: linear-gradient(
+    81deg,
+    #e7f0ff 9.01%,
+    rgba(232, 241, 255, 0.47) 89.11%
+  );
+}
+.mainContent {
+  width: 75%;
+}
+.sideBar {
+  max-width: 25%;
+  margin-top: 4%;
+  padding: 1%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  height: max-content;
+}
+.sideBar > img {
+  object-fit: contain;
+  width: 100%;
+}
+
+@media screen and (max-width: 1080px) {
+  .sideBar {
+    display: none;
+  }
+  .mainContent {
+    width: 100%;
+  }
+}

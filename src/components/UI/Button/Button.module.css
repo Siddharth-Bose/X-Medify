@@ -1,11 +1,13 @@
 .btn {
   background-color: #2aa8ff;
-  padding: 10px;
+  padding: 5px ;
   min-width: max-content;
   text-align: center;
   color: #fff;
   border-radius: 8px;
   border: none;
+  display: flex;
+  align-items: center;
 }
 .mobCta {
   display: none;
@@ -24,6 +26,6 @@
   }
   .viewAll {
     width: 40%;
-    padding:3%
+    padding: 3%;
   }
 }

@@ -1,0 +1,224 @@
+.hospital {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 5% auto;
+  background-color: #fff;
+  border-radius: 16px;
+}
+.hospitalCard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 2rem;
+  gap: 5%;
+  width: 100%;
+  height: 100%;
+}
+.fees {
+  color: #787887;
+  font-weight: 400;
+  display: flex;
+  gap: 2%;
+  text-wrap: nowrap;
+}
+.free {
+  color: #01a400;
+}
+.hospitalName {
+  color: #01a400;
+}
+.discount {
+  text-decoration: line-through;
+}
+.hospitalDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+}
+.availability {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end !important;
+  align-items: center;
+  margin-top: auto;
+  gap: 5%;
+}
+.like {
+  background: #01a400;
+  color: #fff;
+  padding: 2% 3%;
+  width: max-content;
+  display: flex;
+  gap: 0.8rem;
+  border-radius: 0.5rem;
+}
+.likeHr {
+  width: 100%;
+  margin: 5% 0;
+  border: 1px dashed #e8e8f0;
+}
+.booking {
+  display: flex;
+  gap: 15%;
+  width: 100%;
+  max-width: 25%;
+  flex-wrap: wrap;
+}
+.bookingTime {
+  color: #2aa7ff;
+  padding: 3%;
+  border: 1px solid #2aa7ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+  text-wrap: nowrap;
+}
+.bookingDate {
+  margin-top: 5%;
+  color: #007100;
+  padding: 3%;
+  border: 1px solid #00a500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-wrap: nowrap;
+}
+.availability > h4 {
+  color: #01a400;
+}
+hr {
+  width: 100%;
+  border: 0.5px solid #f0f0f5;
+  border-radius: 0.5px;
+  margin: 0 auto;
+}
+.activeHr {
+  width: 10%;
+  border: 2px solid #01a400;
+}
+
+.container {
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  padding-top: 0;
+  margin: auto;
+  width: 100%;
+}
+
+.tabNav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 0.5rem; */
+  flex: 1;
+  padding-bottom: 0.8rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  gap: 10%;
+  border-bottom: 4px solid #f0f0f5;
+}
+.availableSlot {
+  color: #01a400;
+}
+.active {
+  border-bottom: 4px solid #2aa7ff;
+}
+
+.navBtn {
+  padding: 1rem 1.2rem;
+  background: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #e0e0e4;
+}
+
+.navBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.slotsContainer {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.slotGroup {
+  display: flex;
+  gap: 1rem;
+  text-wrap: nowrap;
+  flex-wrap: wrap;
+}
+
+.slot {
+  padding: 1rem 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  /* flex: 1; */
+  text-align: center;
+  font-weight: bold;
+  color: #2aa7ff;
+  border: 1px solid #2aa7ff;
+  max-width: 250px;
+  text-wrap: wrap;
+}
+
+.disabled {
+  background: #fff;
+  color: #a5d4f6;
+  pointer-events: none;
+  text-decoration: line-through;
+}
+.slotGroupWrapper {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10%;
+  flex-wrap: nowrap;
+}
+
+.periodHeading {
+  font-weight: 300;
+  line-height: 19.6px;
+  text-transform: capitalize;
+  width: 10%;
+}
+
+@media screen and (max-width: 768px) {
+  .slotGroupWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .slot {
+    margin-top: 5%;
+  }
+  .slotGroup {
+    flex-wrap: wrap;
+    text-wrap: wrap;
+  }
+  .hospitalImage {
+    display: none;
+  }
+}

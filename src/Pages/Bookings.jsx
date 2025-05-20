@@ -1,7 +1,8 @@
 import React from "react";
+import HospitalCard from "../components/HospitalCard";
 
 function Bookings() {
-  return <div>Bookings</div>;
+  return <HospitalCard />;
 }
 
 export default Bookings;
