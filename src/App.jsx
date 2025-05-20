@@ -18,7 +18,6 @@ function App() {
       <Navbar />
       {location.pathname !== "/" && <SearchBox />}
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route
           path="/search-results"
           element={
@@ -35,6 +34,7 @@ function App() {
             </Layout>
           }
         />
+        <Route path="/" element={<Home />} />
       </Routes>
       {location.pathname !== "/my-bookings" && <FAQ />}
       <Downloads />
