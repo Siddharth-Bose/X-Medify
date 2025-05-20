@@ -12,13 +12,13 @@ function Heading({
     <div className={centered ? styles.textCenter : styles.textJustify}>
       {subHeading && <h4 className={styles.subHeading}>{subHeading}</h4>}
       {heading && (
-        <h1 className={styles.heading}>
+        <h2 className={styles.heading}>
           {highlight && <span className={styles.highlight}>{highlight}</span>}{" "}
           {heading}{" "}
           {highlight && !highlightReversed && (
             <span className={styles.highlight}>{highlight}</span>
           )}
-        </h1>
+        </h2>
       )}
     </div>
   );
