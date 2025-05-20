@@ -7,8 +7,13 @@ function Downloads() {
   return (
     <div className={styles.downloads}>
       <div className={styles.downloadsAbout}>
-        <img src="/download.png" alt="download" />
-        <img src="/download-arrow.png" alt="download-arrow" className={styles.arrow} height={"25%"} />
+        <img src="/download.png" alt="download" className={styles.download} />
+        <img
+          src="/download-arrow.png"
+          alt="download-arrow"
+          className={styles.arrow}
+          height={"25%"}
+        />
       </div>
       <div className={styles.downloadsCta}>
         <Heading heading={"Download the"} />

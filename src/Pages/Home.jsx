@@ -9,8 +9,6 @@ import Team from "../components/Team";
 import HeroImg from "../components/HeroImg";
 import Blogs from "../components/Blogs";
 import Acquisition from "../components/Acquisition";
-import FAQ from "../components/FAQ";
-import Downloads from "../components/Downloads";
 
 function Home() {
   return (
@@ -31,8 +29,6 @@ function Home() {
       <HeroImg />
       <Blogs />
       <Acquisition />
-      <FAQ />
-      <Downloads />
     </div>
   );
 }

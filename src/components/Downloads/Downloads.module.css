@@ -52,6 +52,9 @@
 .downloadBtn {
   width: 30%;
 }
+.download {
+  width: 80%;
+}
 @media screen and (max-width: 768px) {
   .downloads {
     flex-wrap: wrap;
@@ -70,7 +73,7 @@
   .arrow {
     display: none;
   }
-  .downloadBtnContainer{
+  .downloadBtnContainer {
     justify-content: center;
   }
 }
