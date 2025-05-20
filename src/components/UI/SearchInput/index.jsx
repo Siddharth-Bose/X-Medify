@@ -1,33 +1,108 @@
-import React from "react";
+// import React from "react";
+// import styles from "./SearchInput.module.css";
+
+// const SearchInput = ({
+//   placeholder = "Search...",
+//   data,
+//   setSelected,
+//   value,
+//   id,
+//   disabled = false,
+// }) => {
+//   return (
+//     <div className={styles.searchContainer} id={id}>
+//       <img src="/SearchIcon.png" alt="search" className={styles.icon} />
+//       <select
+//         name={id}
+//         className={styles.input}
+//         defaultValue={value}
+//         onChange={(e) => {
+//           setSelected(e.target.value);
+//         }}
+//         disabled={disabled}
+//       >
+//         <li><option value={""}>{placeholder}</option></li>
+//         {data.map((item, idx) => {
+//           return (
+//             <option key={idx} value={item}>
+//             <li>  {item}
+//             </li>
+//             </option>
+//           );
+//         })}
+//       </select>
+//     </div>
+//   );
+// };
+
+// export default SearchInput;
+
+
+
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./SearchInput.module.css";
 
 const SearchInput = ({
   placeholder = "Search...",
-  data,
+  data = [],
   setSelected,
   value,
   id,
   disabled = false,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(value || "");
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelect = (item) => {
+    setSelectedValue(item);
+    setIsOpen(false);
+    setSelected(item);
+  };
+
   return (
-    <div className={styles.searchContainer} id={id}>
+    <div className={styles.searchContainer} id={id} ref={dropdownRef}>
       <img src="/SearchIcon.png" alt="search" className={styles.icon} />
-      <select
-        name={id}
-        className={styles.input}
-        defaultValue={value}
-        onChange={(e) => {
-          setSelected(e.target.value);
+      <div
+        className={`${styles.input} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+        onClick={() => !disabled && setIsOpen((prev) => !prev)}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") setIsOpen((prev) => !prev);
         }}
-        disabled={disabled}
       >
-        <li>
-          <option value={""}>{placeholder}</option>
-        </li>
-        {data.map((item, idx) => {
-          return <li key={idx}>{item}</li>;
-        })}
-      </select>
+        {selectedValue || placeholder}
+      </div>
+
+      {isOpen && (
+        <ul className={styles.dropdown}>
+          <li
+            className={styles.dropdownItem}
+            onClick={() => handleSelect("")}
+          >
+            {placeholder}
+          </li>
+          {data.map((item, idx) => (
+            <li
+              key={idx}
+              className={styles.dropdownItem}
+              onClick={() => handleSelect(item)}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

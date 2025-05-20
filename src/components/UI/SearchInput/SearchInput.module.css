@@ -29,3 +29,23 @@
   flex: 1;
   font-size: 14px;
 }
+.dropdown {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: 100%;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.dropdownItem {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}
