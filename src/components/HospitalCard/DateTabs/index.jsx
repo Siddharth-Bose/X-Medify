@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import styles from "../HospitalCard.module.css";
+import CustomModal from "../../Modal";
+import { useHospitals } from "../../../context/LocationContext";
 
 const getNext7Dates = () => {
   const dates = [];
@@ -26,11 +28,20 @@ const getTimeOfDay = () => {
   return "morning";
 };
 
-const DateTabs = () => {
+const DateTabs = ({ hospital }) => {
   const allDates = getNext7Dates();
   const [startIndex, setStartIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentSlot, setCurrentSlot] = useState(getTimeOfDay());
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const {
+    setSelectedDay,
+    setSelectedSlot,
+    selectedDay,
+    selectedSlot,
+    bookings,
+    addBooking,
+  } = useHospitals();
 
   useEffect(() => {
     setCurrentSlot(getTimeOfDay());
@@ -55,15 +66,11 @@ const DateTabs = () => {
     return date.toDateString().slice(0, 10);
   };
 
-  const isToday = activeIndex === 0;
-
   const convertTo24Hour = (timeStr) => {
     const [time, modifier] = timeStr.split(" ");
     let [hours, minutes] = time.split(":").map(Number);
-
     if (modifier === "PM" && hours !== 12) hours += 12;
     if (modifier === "AM" && hours === 12) hours = 0;
-
     return hours * 60 + minutes;
   };
 
@@ -76,7 +83,6 @@ const DateTabs = () => {
     Object.entries(SLOT_TIMES).forEach(([period, slots]) => {
       const availableSlots = slots.filter((time) => {
         const slotMinutes = convertTo24Hour(time);
-        // For today: only include slots later than current time
         return !isToday || slotMinutes > currentMinutes;
       });
       availableCount += availableSlots.length;
@@ -85,83 +91,155 @@ const DateTabs = () => {
     return availableCount;
   };
 
-  const isSlotDisabled = (period, time) => {
+  const isSlotDisabled = (date, time) => {
     const today = new Date();
-    const activeDate = allDates[activeIndex];
-    const isToday = today.toDateString() === activeDate.toDateString();
-
-    if (!isToday) return false;
-
+    const isToday = today.toDateString() === date.toDateString();
     const currentMinutes = today.getHours() * 60 + today.getMinutes();
     const slotMinutes = convertTo24Hour(time);
 
-    return slotMinutes <= currentMinutes;
+    if (isToday && slotMinutes <= currentMinutes) return true;
+
+    return bookings.some((booking) => {
+      const bookedDate = new Date(booking.date).toDateString();
+      const hospitalMatch = booking.hospital?.id === hospital?.id;
+      return (
+        bookedDate === date.toDateString() &&
+        booking.time === time &&
+        hospitalMatch
+      );
+    });
   };
 
   return (
-    <div className={styles.container}>
-      <hr />
-      <hr className={styles.activeHr} />
-      <div className={styles.tabNav}>
-        <button
-          onClick={handlePrev}
-          disabled={startIndex === 0}
-          className={styles.navBtn}
-        >
-          <img src="/prev.png" alt="previous" />
-        </button>
+    <>
+      <div className={styles.container}>
+        <hr />
+        <hr className={styles.activeHr} />
 
-        <div className={styles.tabs}>
-          {allDates.slice(startIndex, startIndex + 3).map((date, idx) => {
-            const globalIndex = startIndex + idx;
-            return (
-              <button
-                key={globalIndex}
-                className={`${styles.tab} ${
-                  activeIndex === globalIndex ? styles.active : ""
-                }`}
-                onClick={() => setActiveIndex(globalIndex)}
-              >
-                <div className="date">{formatDate(date)}</div>{" "}
-                <div className={styles.availableSlot}>
-                  {getAvailableSlots(date)} slots available
-                </div>
-              </button>
-            );
-          })}
+        <div className={styles.tabNav}>
+          <button
+            onClick={handlePrev}
+            disabled={startIndex === 0}
+            className={styles.navBtn}
+          >
+            <img src="/prev.png" alt="previous" />
+          </button>
+
+          <div className={styles.tabs}>
+            {allDates.slice(startIndex, startIndex + 3).map((date, idx) => {
+              const globalIndex = startIndex + idx;
+              return (
+                <button
+                  key={globalIndex}
+                  className={`${styles.tab} ${
+                    activeIndex === globalIndex ? styles.active : ""
+                  }`}
+                  onClick={() => setActiveIndex(globalIndex)}
+                >
+                  <div className="date">{formatDate(date)}</div>{" "}
+                  <div className={styles.availableSlot}>
+                    {getAvailableSlots(date)} slots available
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          <button
+            onClick={handleNext}
+            disabled={startIndex + 3 >= allDates.length}
+            className={styles.navBtn}
+          >
+            <img src="/next.png" alt="next" />
+          </button>
         </div>
 
-        <button
-          onClick={handleNext}
-          disabled={startIndex + 3 >= allDates.length}
-          className={styles.navBtn}
-        >
-          <img src="/next.png" alt="next" />
-        </button>
+        <div className={styles.slotsContainer}>
+          {["morning", "afternoon", "evening"].map((period) => (
+            <div key={period} className={styles.slotGroupWrapper}>
+              <h4 className={styles.periodHeading}>
+                {period.charAt(0).toUpperCase() + period.slice(1)}
+              </h4>
+              <div className={styles.slotGroup}>
+                {SLOT_TIMES[period].map((time) => (
+                  <div
+                    key={time}
+                    className={`${styles.slot} ${
+                      isSlotDisabled(allDates[activeIndex], time)
+                        ? styles.disabled
+                        : ""
+                    }`}
+                    onClick={() => {
+                      if (!isSlotDisabled(allDates[activeIndex], time)) {
+                        setSelectedDay(allDates[activeIndex]);
+                        setSelectedSlot(time);
+                        setIsModalOpen(true);
+                      }
+                    }}
+                  >
+                    {time}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className={styles.slotsContainer}>
-        {["morning", "afternoon", "evening"].map((period) => (
-          <div key={period} className={styles.slotGroupWrapper}>
-            <h4 className={styles.periodHeading}>
-              {period.charAt(0) + period.slice(1)}
-            </h4>
-            <div className={styles.slotGroup}>
-              {SLOT_TIMES[period].map((time) => (
-                <div
-                  key={time}
-                  className={`${styles.slot} ${
-                    isSlotDisabled(period, time) ? styles.disabled : ""
-                  }`}
-                >
-                  {time}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+      <CustomModal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        title="Confirm Booking"
+      >
+        <p>Are you sure you want to create a booking?</p>
+        <p>
+          <strong>
+            {selectedDay
+              ? new Date(selectedDay).toLocaleDateString()
+              : "No date"}{" "}
+            at {selectedSlot}
+          </strong>
+        </p>
+        <div
+          style={{ display: "flex", justifyContent: "flex-end", gap: "1rem" }}
+        >
+          <button
+            onClick={() => {
+              addBooking({
+                date: selectedDay.toDateString(),
+                time: selectedSlot,
+                hospital: hospital || {}, // fallback
+                createdAt: new Date().toISOString(),
+              });
+              setIsModalOpen(false);
+            }}
+            style={{
+              padding: "0.5rem 1rem",
+              backgroundColor: "#16a34a",
+              color: "#fff",
+              border: "none",
+              borderRadius: "0.5rem",
+              cursor: "pointer",
+            }}
+          >
+            Confirm
+          </button>
+          <button
+            onClick={() => setIsModalOpen(false)}
+            style={{
+              padding: "0.5rem 1rem",
+              backgroundColor: "#dc2626",
+              color: "#fff",
+              border: "none",
+              borderRadius: "0.5rem",
+              cursor: "pointer",
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </CustomModal>
+    </>
   );
 };
 

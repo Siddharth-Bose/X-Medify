@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import styles from "../Navbar.module.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../../UI/Button/Button";
 
 function MainNav() {
@@ -14,6 +14,7 @@ function MainNav() {
     "Software for Provider",
     "Facilities",
   ];
+  const navigate = useNavigate();
   return (
     <div
       className={
@@ -23,11 +24,13 @@ function MainNav() {
       }
     >
       <div className={styles.brand}>
-        <div className={styles.brandMain}>
+        <Link to="/" className={styles.brandMain}>
           <img src="/medifyLogo.png" alt="Medify" className={styles.brandImg} />
           <p className={styles.brandText}>Medify</p>
-        </div>
-        <Button parentClasses="mobCta">My Bookings</Button>
+        </Link>
+        <Button parentClasses="mobCta" handler={() => navigate("/my-bookings")}>
+          My Bookings
+        </Button>
       </div>
       <div className={styles.navLinks}>
         {links.map((link, idx) => {
@@ -43,7 +46,9 @@ function MainNav() {
             </Link>
           );
         })}
-        <Button parentClasses="ctaBtn">My Bookings</Button>
+        <Button parentClasses="ctaBtn" handler={() => navigate("/my-bookings")}>
+          My Bookings
+        </Button>
       </div>
     </div>
   );

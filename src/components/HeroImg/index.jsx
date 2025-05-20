@@ -1,32 +1,3 @@
-// import React from "react";
-// import styles from "./HeroImg.module.css";
-// import Heading from "../UI/Heading";
-
-// function HeroImg() {
-//   return (
-//     <div className={styles.wrapper}>
-//       <div className={styles.heroLeft}>
-//         <div className={`${styles.square} ${styles.squareBehind}`}></div>
-//         <div className={`${styles.square} ${styles.squareFront}`}></div>
-//         <div className={styles.comment}></div>
-//       </div>
-//       <div
-//         className={styles.heroRight}
-//         style={{ textAlign: "left !important" }}
-//       >
-//         <Heading
-//           heading={"Patient"}
-//           highlight={"Caring"}
-//           subHeading={"HELPING PATIENTS FROM AROUND THE GLOBE!!"}
-//           centered={false}
-//         />
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default HeroImg;
-
 import React from "react";
 import "./index.css";
 import Heading from "../UI/Heading";

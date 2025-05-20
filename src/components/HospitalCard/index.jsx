@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import styles from "./HospitalCard.module.css";
 import DateTabs from "./DateTabs";
 import Button from "../UI/Button/Button";
+import { useLocation } from "react-router-dom";
 
-function HospitalCard() {
-  const [isBooking, setIsBooking] = useState(false);
+function HospitalCard({ name, city, state, address, ratings, id }) {
+  const location = useLocation();
+  const [isDateTableOpen, setIsDateTableOpen] = useState(false);
+  const isBooking = location.pathname == "/my-bookings";
   return (
     <div className={styles.hospital}>
       <div className={styles.hospitalCard}>
@@ -12,23 +15,27 @@ function HospitalCard() {
           <img src="/hospital.png" alt="hospital" />
         </div>
         <div className={styles.hospitalDetails}>
-          <h3 className={styles.hospitalName}>Hospital Name</h3>
-          <h4>Hospital City</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          <h5 className={styles.fees}>
-            <span className={styles.free}>FREE</span>
-            <span className={styles.discount}>₹ 500</span>
-            Consultation fee at clinic
-          </h5>
+          <h3 className={styles.hospitalName}>{name}</h3>
+          <h4>{`${city}, ${state}`}</h4>
+          <p>{address}</p>
+          {!isBooking && (
+            <h5 className={styles.fees}>
+              <span className={styles.free}>FREE</span>
+              <span className={styles.discount}>₹ 500</span>
+              Consultation fee at clinic
+            </h5>
+          )}
           <hr className={styles.likeHr} />
           <div className={styles.like}>
-            <img src="Like.png" alt="Like" width={25} height={20} />5
+            <img src="Like.png" alt="Like" width={25} height={20} />
+            {ratings}
           </div>
         </div>
+
         {!isBooking ? (
           <div className={styles.availability}>
             <h4>Available Today</h4>
-            <Button handler={() => setIsBooking((prev) => !prev)}>
+            <Button handler={() => setIsDateTableOpen((prev) => !prev)}>
               Book Free Center Visit
             </Button>
           </div>
@@ -39,7 +46,9 @@ function HospitalCard() {
           </div>
         )}
       </div>
-      {isBooking && <DateTabs />}
+      {isDateTableOpen && !isBooking && (
+        <DateTabs hospital={{ name, city, state, address, ratings, id }} />
+      )}
     </div>
   );
 }

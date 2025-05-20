@@ -177,6 +177,7 @@ hr {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   /* flex: 1; */
+  cursor: pointer;
   text-align: center;
   font-weight: bold;
   color: #2aa7ff;
