@@ -10,11 +10,10 @@ const SearchInput = ({
   disabled = false,
 }) => {
   return (
-    <div className={styles.searchContainer}>
+    <div className={styles.searchContainer} id={id}>
       <img src="/SearchIcon.png" alt="search" className={styles.icon} />
       <select
         name={id}
-        id={id}
         className={styles.input}
         defaultValue={value}
         onChange={(e) => {
@@ -22,12 +21,16 @@ const SearchInput = ({
         }}
         disabled={disabled}
       >
-        <option value={""}>{placeholder}</option>
+        <li>
+          <option value={""}>{placeholder}</option>
+        </li>
         {data.map((item, idx) => {
           return (
-            <option key={idx} value={item}>
-              {item}
-            </option>
+            <li>
+              <option key={idx} value={item}>
+                {item}
+              </option>
+            </li>
           );
         })}
       </select>
