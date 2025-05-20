@@ -31,13 +31,14 @@ function SearchResult() {
       </h1>
       {hospitals.map((hospital) => (
         <HospitalCard
-          key={hospital["Provider ID"]}
-          id={hospital["Provider ID"]}
-          name={hospital["Hospital Name"]}
-          city={hospital.City}
-          state={hospital.State}
-          address={hospital.Address}
-          ratings={hospital["Hospital overall rating"]}
+          hospitalData={{
+            "Hospital Name": hospital["Hospital Name"],
+            City: hospital.City,
+            State: hospital.State,
+            "Hospital Type": hospital["Hospital Type"],
+            address: hospital.address,
+            "Hospital overall rating": hospital["Hospital overall rating"],
+          }}
         />
       ))}
     </div>

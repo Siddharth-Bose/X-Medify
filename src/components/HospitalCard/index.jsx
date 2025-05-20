@@ -3,8 +3,14 @@ import styles from "./HospitalCard.module.css";
 import DateTabs from "./DateTabs";
 import Button from "../UI/Button/Button";
 import { useLocation } from "react-router-dom";
-
-function HospitalCard({ name, city, state, address, ratings, id }) {
+//         "Hospital Name": "southeast alabama medical center",
+//         "City": "DOTHAN",
+//         "State": "Alabama",
+//         "Hospital Type": "General",
+//         "Hospital overall rating": "4.5",
+//         bookingDate: "2024-12-15",
+//         bookingTime: "10:00 AM",
+function HospitalCard({ hospitalData }) {
   const location = useLocation();
   const [isDateTableOpen, setIsDateTableOpen] = useState(false);
   const isBooking = location.pathname == "/my-bookings";
@@ -15,9 +21,11 @@ function HospitalCard({ name, city, state, address, ratings, id }) {
           <img src="/hospital.png" alt="hospital" />
         </div>
         <div className={styles.hospitalDetails}>
-          <h3 className={styles.hospitalName}>{name}</h3>
-          <h4>{`${city}, ${state}`}</h4>
-          <p>{address}</p>
+          <h3 className={styles.hospitalName}>
+            {hospitalData["Hospital Name"]}
+          </h3>
+          <h4>{`${hospitalData["City"]}, ${hospitalData["State"]}`}</h4>
+          {hospitalData.address && <p>{hospitalData.address}</p>}
           {!isBooking && (
             <h5 className={styles.fees}>
               <span className={styles.free}>FREE</span>
@@ -28,7 +36,7 @@ function HospitalCard({ name, city, state, address, ratings, id }) {
           <hr className={styles.likeHr} />
           <div className={styles.like}>
             <img src="Like.png" alt="Like" width={25} height={20} />
-            {ratings}
+            {hospitalData["Hospital overall rating"]}
           </div>
         </div>
 
@@ -41,13 +49,13 @@ function HospitalCard({ name, city, state, address, ratings, id }) {
           </div>
         ) : (
           <div className={styles.booking}>
-            <div className={styles.bookingTime}>10:30 A.M.</div>
-            <div className={styles.bookingDate}>20 April 2024</div>
+            <div className={styles.bookingTime}>{hospitalData.bookingTime}</div>
+            <div className={styles.bookingDate}>{hospitalData.bookingDate}</div>
           </div>
         )}
       </div>
       {isDateTableOpen && !isBooking && (
-        <DateTabs hospital={{ name, city, state, address, ratings, id }} />
+        <DateTabs hospitalData={hospitalData} />
       )}
     </div>
   );

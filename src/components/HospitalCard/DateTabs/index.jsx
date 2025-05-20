@@ -28,7 +28,7 @@ const getTimeOfDay = () => {
   return "morning";
 };
 
-const DateTabs = ({ hospital }) => {
+const DateTabs = ({ hospitalData }) => {
   const allDates = getNext7Dates();
   const [startIndex, setStartIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -43,6 +43,9 @@ const DateTabs = ({ hospital }) => {
     addBooking,
   } = useHospitals();
 
+  useEffect(() => {
+    console.log(hospitalData);
+  });
   useEffect(() => {
     setCurrentSlot(getTimeOfDay());
   }, []);
@@ -100,11 +103,14 @@ const DateTabs = ({ hospital }) => {
     if (isToday && slotMinutes <= currentMinutes) return true;
 
     return bookings.some((booking) => {
-      const bookedDate = new Date(booking.date).toDateString();
-      const hospitalMatch = booking.hospital?.id === hospital?.id;
+      const bookedDate = new Date(booking.bookingDate).toDateString();
+      const selectedDate = date.toDateString();
+      const hospitalMatch =
+        booking["Hospital Name"]?.toLowerCase() ===
+        hospitalData["Hospital Name"]?.toLowerCase();
       return (
-        bookedDate === date.toDateString() &&
-        booking.time === time &&
+        bookedDate === selectedDate &&
+        booking.bookingTime === time &&
         hospitalMatch
       );
     });
@@ -206,11 +212,17 @@ const DateTabs = ({ hospital }) => {
           <button
             onClick={() => {
               addBooking({
-                date: selectedDay.toDateString(),
-                time: selectedSlot,
-                hospital: hospital || {}, // fallback
-                createdAt: new Date().toISOString(),
+                "Hospital Name": hospitalData["Hospital Name"],
+                City: hospitalData.City,
+                State: hospitalData.State,
+                "Hospital Type": hospitalData["Hospital Type"],
+                address: hospitalData.address,
+                "Hospital overall rating":
+                  hospitalData["Hospital overall rating"],
+                bookingDate: selectedDay.toDateString(),
+                bookingTime: selectedSlot,
               });
+
               setIsModalOpen(false);
             }}
             style={{
