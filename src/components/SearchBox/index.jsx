@@ -26,7 +26,7 @@ function SearchBox() {
       }}
     >
       {location.pathname == "/my-bookings"
-        ? !isMobile && <h3 className={styles.bookingText}>My Bookings</h3>
+        ? !isMobile && <h1 className={styles.bookingText}>My Bookings</h1>
         : null}
       <div
         className={styles.searchBox}

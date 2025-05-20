@@ -7,7 +7,7 @@ import { useHospitals } from "../context/LocationContext";
 function SearchResult() {
   const location = useLocation();
   const { state: navState } = location;
-  const { hospitals, setSelectedState, setSelectedCity } = useHospitals();
+  const { hospitals, setSelectedState, setSelectedCity, selectedCity } = useHospitals();
 
   useEffect(() => {
     if (navState?.selectedState && navState?.selectedCity) {
@@ -22,7 +22,10 @@ function SearchResult() {
     );
 
   return (
-    <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div>
+      <h1>
+        {`${hospitals.length} medical centers available in ${selectedCity}`}
+      </h1>
       {hospitals.map((hospital) => (
         <HospitalCard
           key={hospital["Provider ID"]}

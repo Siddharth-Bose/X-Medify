@@ -136,7 +136,7 @@ const DateTabs = ({ hospital }) => {
                   }`}
                   onClick={() => setActiveIndex(globalIndex)}
                 >
-                  <div className="date">{formatDate(date)}</div>{" "}
+                  <p className="date">{formatDate(date)}</p>{" "}
                   <div className={styles.availableSlot}>
                     {getAvailableSlots(date)} slots available
                   </div>
@@ -157,9 +157,9 @@ const DateTabs = ({ hospital }) => {
         <div className={styles.slotsContainer}>
           {["morning", "afternoon", "evening"].map((period) => (
             <div key={period} className={styles.slotGroupWrapper}>
-              <h4 className={styles.periodHeading}>
+              <p className={styles.periodHeading}>
                 {period.charAt(0).toUpperCase() + period.slice(1)}
-              </h4>
+              </p>
               <div className={styles.slotGroup}>
                 {SLOT_TIMES[period].map((time) => (
                   <div
