@@ -36,7 +36,7 @@ function HospitalCard({ name, city, state, address, ratings, id }) {
           <div className={styles.availability}>
             <h4>Available Today</h4>
             <Button handler={() => setIsDateTableOpen((prev) => !prev)}>
-              Book Free Center Visit
+              Book FREE Center Visit
             </Button>
           </div>
         ) : (
