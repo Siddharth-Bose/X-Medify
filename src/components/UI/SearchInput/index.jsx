@@ -25,13 +25,7 @@ const SearchInput = ({
           <option value={""}>{placeholder}</option>
         </li>
         {data.map((item, idx) => {
-          return (
-            <li>
-              <option key={idx} value={item}>
-                {item}
-              </option>
-            </li>
-          );
+          return <li key={idx}>{item}</li>;
         })}
       </select>
     </div>
