@@ -8,7 +8,7 @@ function Button({ children, handler, parentClasses, search = false }) {
       <button
         className={`${styles.btn}`}
         onClick={handler}
-        id={search && "searchBtn"}
+        id={search ? "searchBtn" : undefined}
       >
         {children}
       </button>

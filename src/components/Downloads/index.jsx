@@ -17,7 +17,7 @@ function Downloads() {
       </div>
       <div className={styles.downloadsCta}>
         <Heading heading={"Download the"} />
-        <Heading highlight={"Medify"} heading={"App"} highlightReversed />
+        <Heading preHighlight={"Medify"} heading={"App"} highlightReversed />
         <p>Get the link to download the app</p>
         <div className={styles.inputGroup}>
           <div className={styles.prefix}>+91</div>

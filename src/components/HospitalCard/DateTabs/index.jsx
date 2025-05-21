@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../HospitalCard.module.css";
 import CustomModal from "../../Modal";
-import { useHospitals } from "../../../context/LocationContext";
+import { useHospitals } from "../../../context/HospitalContext";
 
 const getNext7Dates = () => {
   const dates = [];
@@ -43,9 +43,6 @@ const DateTabs = ({ hospitalData }) => {
     addBooking,
   } = useHospitals();
 
-  useEffect(() => {
-    console.log(hospitalData);
-  });
   useEffect(() => {
     setCurrentSlot(getTimeOfDay());
   }, []);

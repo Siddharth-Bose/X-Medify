@@ -4,7 +4,7 @@ import SearchInput from "../UI/SearchInput";
 import Button from "../UI/Button/Button";
 import IconBox from "../UI/IconBox";
 import { useNavigate } from "react-router-dom";
-import { useHospitals } from "../../context/LocationContext";
+import { useHospitals } from "../../context/HospitalContext";
 
 function FacilitiesSearch() {
   const navigate = useNavigate();

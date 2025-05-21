@@ -3,6 +3,7 @@ import styles from "./Heading.module.css";
 
 function Heading({
   heading,
+  preHighlight,
   subHeading,
   highlight,
   centered = false,
@@ -13,7 +14,9 @@ function Heading({
       {subHeading && <h4 className={styles.subHeading}>{subHeading}</h4>}
       {heading && (
         <h2 className={styles.heading}>
-          {highlight && <span className={styles.highlight}>{highlight}</span>}{" "}
+          {preHighlight && (
+            <span className={styles.highlight}>{preHighlight}</span>
+          )}{" "}
           {heading}{" "}
           {highlight && !highlightReversed && (
             <span className={styles.highlight}>{highlight}</span>

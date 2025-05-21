@@ -1,6 +1,7 @@
 .textCenter > *,
 .textJustify > * {
   word-spacing: 5px;
+  width: 100% !important;
 }
 .heading {
   color: #1b3c74;

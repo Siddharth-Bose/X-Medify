@@ -3,14 +3,14 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App.jsx";
-import { LocationProvider } from "./context/LocationContext.jsx";
+import { HospitalProvider } from "./context/HospitalContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <LocationProvider>
+    <HospitalProvider>
       <Router>
         <App />
       </Router>
-    </LocationProvider>
+    </HospitalProvider>
   </StrictMode>
 );

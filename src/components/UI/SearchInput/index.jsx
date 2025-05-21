@@ -1,44 +1,3 @@
-// import React from "react";
-// import styles from "./SearchInput.module.css";
-
-// const SearchInput = ({
-//   placeholder = "Search...",
-//   data,
-//   setSelected,
-//   value,
-//   id,
-//   disabled = false,
-// }) => {
-//   return (
-//     <div className={styles.searchContainer} id={id}>
-//       <img src="/SearchIcon.png" alt="search" className={styles.icon} />
-//       <select
-//         name={id}
-//         className={styles.input}
-//         defaultValue={value}
-//         onChange={(e) => {
-//           setSelected(e.target.value);
-//         }}
-//         disabled={disabled}
-//       >
-//         <li><option value={""}>{placeholder}</option></li>
-//         {data.map((item, idx) => {
-//           return (
-//             <option key={idx} value={item}>
-//             <li>  {item}
-//             </li>
-//             </option>
-//           );
-//         })}
-//       </select>
-//     </div>
-//   );
-// };
-
-// export default SearchInput;
-
-
-
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./SearchInput.module.css";
 
@@ -74,7 +33,9 @@ const SearchInput = ({
     <div className={styles.searchContainer} id={id} ref={dropdownRef}>
       <img src="/SearchIcon.png" alt="search" className={styles.icon} />
       <div
-        className={`${styles.input} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`${styles.input} ${
+          disabled ? "opacity-50 cursor-not-allowed" : ""
+        }`}
         onClick={() => !disabled && setIsOpen((prev) => !prev)}
         tabIndex={0}
         onKeyDown={(e) => {
@@ -86,10 +47,7 @@ const SearchInput = ({
 
       {isOpen && (
         <ul className={styles.dropdown}>
-          <li
-            className={styles.dropdownItem}
-            onClick={() => handleSelect("")}
-          >
+          <li className={styles.dropdownItem} onClick={() => handleSelect("")}>
             {placeholder}
           </li>
           {data.map((item, idx) => (

@@ -17,7 +17,7 @@ function Specialization() {
   ];
   return (
     <div className={styles.specializationWrapper}>
-      <Heading heading={"Find By Specialization"} />
+      <Heading heading={"Find By Specialization"} centered/>
       <div className={styles.cardWrapper}>
         {cardDetails.map((card) => {
           return (

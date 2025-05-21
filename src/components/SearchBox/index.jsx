@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import styles from "./SearchBox.module.css";
 import Button from "../UI/Button/Button";
 import useIsMobile from "../../hooks/useIsMobile";
-import { useHospitals } from "../../context/LocationContext";
+import { useHospitals } from "../../context/HospitalContext";
 import SearchInput from "../UI/SearchInput";
 
 function SearchBox() {
@@ -17,6 +17,8 @@ function SearchBox() {
     setSelectedState,
     setSelectedCity,
     fetchHospitals,
+    searchQuery,
+    setSearchQuery,
   } = useHospitals();
   return (
     <div
@@ -76,11 +78,16 @@ function SearchBox() {
               </span>
               <input
                 type="text"
-                placeholder="Search By Hospital"
+                placeholder="Search Bookings..."
                 className={`${styles.input}`}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <Button search>Search</Button>
+            <Button search disabled>
+              Search
+            </Button>{" "}
+            {/* or remove this if filtering is live */}
           </>
         )}
       </div>

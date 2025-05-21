@@ -1,8 +1,14 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
-const LocationContext = createContext();
+const HospitalContext = createContext();
 
-export const LocationProvider = ({ children }) => {
+export const HospitalProvider = ({ children }) => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedState, setSelectedState] = useState("");
@@ -10,11 +16,14 @@ export const LocationProvider = ({ children }) => {
   const [hospitals, setHospitals] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [bookings, setBookings] = useState(() => {
     const stored = localStorage.getItem("bookings");
     return stored ? JSON.parse(stored) : [];
   });
 
+  // Keep bookings in sync with localStorage
   useEffect(() => {
     localStorage.setItem("bookings", JSON.stringify(bookings));
   }, [bookings]);
@@ -31,18 +40,17 @@ export const LocationProvider = ({ children }) => {
       );
       const data = await response.json();
       setHospitals(data);
-      console.log("Fetched Hospitals:", data);
     } catch (error) {
       console.error("Error Fetching Hospitals:", error);
     }
   };
-  useEffect(() => {
-    fetchHospitals();
-  }, []);
 
+  // Reset city when state changes
   useEffect(() => {
     setSelectedCity("");
   }, [selectedState]);
+
+  // Fetch states on mount
   useEffect(() => {
     const fetchStates = async () => {
       try {
@@ -58,8 +66,13 @@ export const LocationProvider = ({ children }) => {
     fetchStates();
   }, []);
 
+  // Fetch cities when selectedState changes
   useEffect(() => {
     const fetchCities = async () => {
+      if (!selectedState) {
+        setCities([]);
+        return;
+      }
       try {
         const response = await fetch(
           `https://meddata-backend.onrender.com/cities/${selectedState}`
@@ -70,12 +83,21 @@ export const LocationProvider = ({ children }) => {
         console.error("Error fetching cities: ", error);
       }
     };
-    if (selectedState) fetchCities();
-    else setCities([]);
+    fetchCities();
   }, [selectedState]);
 
+  // Filter bookings by hospital name using searchQuery
+  const filteredBookings = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return bookings;
+
+    return bookings.filter((booking) =>
+      booking?.["Hospital Name"]?.toLowerCase().includes(query)
+    );
+  }, [bookings, searchQuery]);
+
   return (
-    <LocationContext.Provider
+    <HospitalContext.Provider
       value={{
         states,
         cities,
@@ -92,11 +114,14 @@ export const LocationProvider = ({ children }) => {
         setSelectedSlot,
         bookings,
         addBooking,
+        searchQuery,
+        setSearchQuery,
+        filteredBookings,
       }}
     >
       {children}
-    </LocationContext.Provider>
+    </HospitalContext.Provider>
   );
 };
 
-export const useHospitals = () => useContext(LocationContext);
+export const useHospitals = () => useContext(HospitalContext);
